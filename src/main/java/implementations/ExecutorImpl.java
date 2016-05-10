@@ -1,19 +1,21 @@
-import Module2.Exceptions.ExecutionAlreadyCalledException;
-import Module2.Exceptions.ExecutionNotCalledException;
+package implementations;
+
+import Exceptions.*;
+import interfaces.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExecutorImpl<T> implements MainClass.Executor<T> {
+public class ExecutorImpl<T> implements Executor<T> {
     private boolean tasksExecuted;
-    private List<MainClass.Task<? extends T>> tasksCollection = new ArrayList<>();
-    MainClass.Validator<T> validator;
+    private List<Task<? extends T>> tasksCollection = new ArrayList<>();
+    Validator<T> validator;
     List<T> validResults = new ArrayList<>();
     List<T> invalidResults = new ArrayList<>();
 
 
     @Override
-    public void addTask(MainClass.Task<? extends T> task) throws ExecutionNotCalledException {
+    public void addTask(Task<? extends T> task) throws ExecutionNotCalledException {
         if (isExecutionAlreadyCalled(true)) throw new ExecutionNotCalledException();
         tasksCollection.add(task);
     }
@@ -23,7 +25,7 @@ public class ExecutorImpl<T> implements MainClass.Executor<T> {
     }
 
     @Override
-    public void addTask(MainClass.Task<? extends T> task, MainClass.Validator<T> validator) {
+    public void addTask(Task<? extends T> task, Validator<T> validator) {
         if (isExecutionAlreadyCalled(true)) {
             throw new ExecutionNotCalledException();
         }
@@ -33,7 +35,7 @@ public class ExecutorImpl<T> implements MainClass.Executor<T> {
 
     @Override
     public void execute() {
-        for (MainClass.Task<? extends T> i : tasksCollection) {
+        for (Task<? extends T> i : tasksCollection) {
             T result = i.getResult();
             if (validator.isValid(result)) {
                 validResults.add(result);

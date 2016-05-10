@@ -15,10 +15,10 @@
     </target>
 
     <target name="jar">
-        <jar destfile="${dist}/CollectionAnalyzer.jar">
+        <jar destfile="${dist}/ExecutorTest.jar">
             <fileset dir="${build}"/>
             <manifest>
-                <attribute name="Main-Class" value="MainClass"/>
+                <attribute name="Main-Class" value="ExecutorTest"/>
             </manifest>
         </jar>
     </target>

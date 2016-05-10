@@ -25,7 +25,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>MainClass</mainClass>
+                            <mainClass>ExecutorTest</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
